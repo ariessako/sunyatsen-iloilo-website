@@ -357,3 +357,4 @@ body.loaded .emb .glint { animation: glint 9s 3s ease-in-out infinite; }
   .alumni-mark { order: -1; align-items: flex-start; border-left: 0; padding-left: 0; }
   .alumni-mark .han { font-size: 4.5rem; }
 }
+html.intro, html.intro body { overflow: hidden; }

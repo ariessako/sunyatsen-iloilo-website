@@ -108,11 +108,22 @@
   // Always open at the top section, unless the link points to a story page
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
   if (location.hash && !location.hash.startsWith("#news-")) {
-    try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {}
+    try { history.replaceState(null, "", location.href.split("#")[0]); } catch (e) {}
   }
   route();
-  window.scrollTo(0, 0);
-  window.addEventListener("load", () => { if (!location.hash) window.scrollTo(0, 0); });
+  // Jump (not glide) to the very top: the hero
+  const toTop = () => {
+    if (location.hash.startsWith("#news-")) return;
+    const root = document.documentElement, prev = root.style.scrollBehavior;
+    root.style.scrollBehavior = "auto";
+    window.scrollTo(0, 0);
+    root.style.scrollBehavior = prev;
+  };
+  toTop();
+  window.addEventListener("load", toTop);
+  window.addEventListener("pageshow", toTop);
+  // Keep the page still under the opening screen
+  document.documentElement.classList.add("intro");
 
   // ---------- Contact
   const notYet = '<span class="muted">To be added</span>';
@@ -128,6 +139,8 @@
   let finished = false;
   const finish = () => {
     if (finished) return; finished = true;
+    document.documentElement.classList.remove("intro");
+    toTop();
     splash.classList.add("hide"); document.body.classList.add("loaded");
     // Count the years of service up from 0
     document.querySelectorAll(".count-up").forEach((el) => {
