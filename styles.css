@@ -338,3 +338,22 @@ body.loaded .emb .ring-words { animation: fadeIn 1.2s .9s ease both; }
 body.loaded .emb .glint { animation: glint 9s 3s ease-in-out infinite; }
 @keyframes glint { 0% { stroke-dashoffset: 0; opacity: 0; } 8% { opacity: .9; } 40% { opacity: .9; } 52%, 100% { stroke-dashoffset: -1520; opacity: 0; } }
 @media (max-width: 800px) { .emb { width: min(300px, 80vw); } }
+
+/* Alumni: a navy band in the seal's blue */
+.alumni { background: #020588; color: #f4f6fb; padding-block: 96px; position: relative; overflow: hidden; }
+.alumni-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 56px; align-items: center; }
+.alumni-text { min-width: 0; }
+.alumni .kicker { color: #e6c868; }
+.alumni h2 { color: #fff; margin-bottom: 20px; }
+.alumni h2 em { display: block; font-style: italic; font-weight: 500; color: #e6c868; }
+.alumni-text > p:not(.kicker) { color: rgba(244,246,251,.82); max-width: 58ch; font-size: 1.08rem; }
+.alumni-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.alumni-mark { display: flex; flex-direction: column; align-items: center; gap: 14px; border-left: 1px solid rgba(230,200,104,.35); padding-left: 40px; }
+.alumni-mark .han { font-family: var(--font-han); font-size: clamp(5rem, 11vw, 8.5rem); line-height: 1; color: transparent; -webkit-text-stroke: 1.5px #c9a227; letter-spacing: .05em; }
+.alumni-mark .cap { font-size: .75rem; letter-spacing: .24em; text-transform: uppercase; color: #e6c868; }
+@media (max-width: 800px) {
+  .alumni { padding-block: 72px; }
+  .alumni-grid { grid-template-columns: 1fr; gap: 36px; }
+  .alumni-mark { order: -1; align-items: flex-start; border-left: 0; padding-left: 0; }
+  .alumni-mark .han { font-size: 4.5rem; }
+}
